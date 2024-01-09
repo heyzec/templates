@@ -5,7 +5,15 @@
     templates = {
       direnv-shell = {
         path = ./direnv-shell;
-        description = "A very basic flake for direnv";
+        description = "a very basic flake for direnv";
+      };
+      python-shell = {
+        path = ./python;
+        description = "a very basic flake for direnv, with Python";
+      };
+      postgres-shell = {
+        path = ./postgres;
+        description = "a very basic flake for direnv, with Postgres DB";
       };
     };
 
