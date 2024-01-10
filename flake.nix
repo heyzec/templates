@@ -3,21 +3,21 @@
 
   outputs = { self }: {
     templates = {
-      direnv-shell = {
-        path = ./direnv-shell;
+      basic = {
+        path = ./basic;
         description = "a very basic flake for direnv";
       };
-      python-shell = {
+      python = {
         path = ./python;
         description = "a very basic flake for direnv, with Python";
       };
-      postgres-shell = {
+      postgres = {
         path = ./postgres;
         description = "a very basic flake for direnv, with Postgres DB";
       };
     };
 
-    defaultTemplate = self.templates.direnv-shell;
+    defaultTemplate = self.templates.basic;
   };
 }
 
