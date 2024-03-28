@@ -15,6 +15,10 @@
         path = ./postgres;
         description = "a very basic flake for direnv, with Postgres DB";
       };
+      vm = {
+        path = ./vm;
+        description = "a very basic flake for building NixOS VMs";
+      };
     };
 
     defaultTemplate = self.templates.basic;
