@@ -5,19 +5,18 @@
     templates = {
       basic = {
         path = ./basic;
-        description = "a very basic flake for direnv";
       };
       python = {
         path = ./python;
-        description = "a very basic flake for direnv, with Python";
       };
       postgres = {
         path = ./postgres;
-        description = "a very basic flake for direnv, with Postgres DB";
+      };
+      node = {
+        path = ./node;
       };
       vm = {
         path = ./vm;
-        description = "a very basic flake for building NixOS VMs";
       };
     };
 
