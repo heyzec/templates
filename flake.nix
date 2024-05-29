@@ -9,6 +9,9 @@
       python = {
         path = ./python;
       };
+      python-telegram-bot = {
+        path = ./python-telegram-bot;
+      };
       postgres = {
         path = ./postgres;
       };

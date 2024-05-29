@@ -1,0 +1,8 @@
+# Flakes
+.direnv
+
+# Secrets
+.env
+
+# Persistence file
+persistence.pickle
