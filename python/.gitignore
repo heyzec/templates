@@ -1,0 +1,12 @@
+# Flakes
+.direnv/
+
+# Packaging
+dist/
+
+# Cache
+__pycache__/
+
+# Secrets
+.env
+
