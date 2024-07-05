@@ -10,8 +10,12 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
-    myPythonApp = mkPoetryApplication { projectDir = ./.; };
+    inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryEnv;
+
+    # Creates a Python environment with an interpreter and all packages
+    myPythonApp = mkPoetryEnv {
+      projectDir = ./.;
+    };
   in
   {
     devShells.${system}.default = pkgs.mkShell {
