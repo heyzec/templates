@@ -1,17 +1,15 @@
 {
   description = "A collection of flake templates";
 
-  outputs = { self }: {
+  outputs = { self }: let
+    python = import ./python;
+  in {
     templates = {
       basic = {
         path = ./basic;
       };
-      python = {
-        path = ./python;
-      };
-      python-telegram-bot = {
-        path = ./python-telegram-bot;
-      };
+      inherit (python) python python-poetry python-poetry2nix;
+      inherit (python) python-telegram-bot;
       postgres = {
         path = ./postgres;
       };
@@ -26,4 +24,3 @@
     defaultTemplate = self.templates.basic;
   };
 }
-

@@ -1,0 +1,5 @@
+# Flakes
+.direnv/
+
+# Python
+.__pycache__/
