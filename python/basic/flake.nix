@@ -6,31 +6,34 @@
   };
 
   outputs = { self, nixpkgs }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-
-    # Define Python version here
-    python-interpreter = pkgs.python312;
-    python-packages = ps: with ps; [
-      pandas
-      requests
-      (let
-        pname = "openlocationcode";
-        version = "1.0.1";
-      in ps.buildPythonPackage {
-        inherit pname version;
-        src = pkgs.fetchPypi {
-          inherit pname version;
-          sha256 = "sha256-b8AQioIUtl10lkEFvWlkWop1KSN/Deaq3PqDzDNzs1k=";
-        };
-        doCheck = false;
-      })
-    ];
+    systems = [ "x86_64-linux" "x86_64-darwin" ];
   in {
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = [
-        (python-interpreter.withPackages python-packages)
-      ];
-    };
+    devShells = nixpkgs.lib.genAttrs systems (system: {
+      default = let
+        pkgs = nixpkgs.legacyPackages.${system};
+
+        # Define Python version here
+        python-interpreter = pkgs.python312;
+        python-packages = ps: with ps; [
+          pandas
+          requests
+          (let
+            pname = "openlocationcode";
+            version = "1.0.1";
+          in ps.buildPythonPackage {
+            inherit pname version;
+            src = pkgs.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-b8AQioIUtl10lkEFvWlkWop1KSN/Deaq3PqDzDNzs1k=";
+            };
+            doCheck = false;
+          })
+        ];
+      in pkgs.mkShell {
+        buildInputs = [
+          (python-interpreter.withPackages python-packages)
+        ];
+      };
+    });
   };
 }
