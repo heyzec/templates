@@ -10,15 +10,10 @@
       };
       inherit (python) python python-poetry python-poetry2nix;
       inherit (python) python-telegram-bot;
-      postgres = {
-        path = ./postgres;
-      };
-      node = {
-        path = ./node;
-      };
-      vm = {
-        path = ./vm;
-      };
+      postgres = { path = ./postgres; };
+      node = { path = ./node; };
+      tectonic = { path = ./tectonic; };
+      vm = { path = ./vm; };
     };
 
     defaultTemplate = self.templates.basic;

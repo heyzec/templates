@@ -1,0 +1,5 @@
+# Flakes
+.direnv/
+
+# Build artifacts
+build/

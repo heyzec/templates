@@ -1,0 +1,23 @@
+{
+  // Adapted from https://github.com/tectonic-typesetting/tectonic/discussions/896
+  "latex-workshop.latex.recipe.default": "tectonic",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "tectonic",
+      "tools": [
+        "tectonic"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": ["-X", "build", "--keep-intermediates", "--keep-logs"],
+      "env": {}
+    }
+  ],
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build/index",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+}
