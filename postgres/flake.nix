@@ -10,13 +10,25 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    # https://github.com/direnv/direnv/issues/73#issuecomment-2478178424
+    # Function to create script
+    mkScript = name: text: let
+      script = pkgs.writeShellScriptBin name text;
+    in script;
+
+    # Define your scripts/aliases
+    scripts = [
+      (mkScript "start" ''pg_ctl -o "-p 5432 -k $PGDATA" start'')
+      (mkScript "pg" ''psql -p 5432 -U postgres'')
+      (mkScript "stop" ''pg_ctl stop'')
+    ];
   in
   {
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = with pkgs; [
         go
         postgresql_15
-      ];
+      ] ++ scripts;
 
       postgresConf = pkgs.writeText "postgresql.conf" ''
         # Add Custom Settings
@@ -50,13 +62,11 @@
         # Setup: DB
         [ ! -d $PGDATA ] && pg_ctl initdb -o "-U postgres" && cat "$postgresConf" >> $PGDATA/postgresql.conf
 
-
         echo ============================================================
         echo ============================================================
-        echo Please use these aliases to start the server:
-        echo alias start=\'pg_ctl -o \"-p 5432 -k \$PGDATA\" start\'
-        echo alias pg=\'psql -p 5432 -U postgres\'
-        echo alias stop=\'pg_ctl stop\'
+        echo 'Start the server: `start`'
+        echo 'Connect to the server: `pg`'
+        echo 'Stop the server: `stop`'
         echo ============================================================
         echo ============================================================
       '';
