@@ -1,1 +1,6 @@
+# Artifacts
+result
 *.qcow2
+
+# Terraform
+.terraform.lock.hcl

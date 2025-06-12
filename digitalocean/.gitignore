@@ -1,0 +1,6 @@
+# Terraform
+.terraform/
+terraform.tfstate
+
+# Flakes
+.direnv/
