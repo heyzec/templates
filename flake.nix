@@ -10,7 +10,7 @@
       # Languages
       inherit (python) python python-poetry python-poetry2nix;
       inherit (python) python-telegram-bot;
-      node = {path = ./node;};
+      nodejs = {path = ./nodejs;};
 
       postgres = {path = ./postgres;};
       tectonic = {path = ./tectonic;};
