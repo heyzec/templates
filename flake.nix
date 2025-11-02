@@ -3,14 +3,16 @@
 
   outputs = {self}: let
     python = import ./python;
+    nodejs = import ./nodejs;
   in {
     templates = {
       basic = {path = ./basic;};
 
-      # Languages
+      # Python
       inherit (python) python python-poetry python-poetry2nix;
       inherit (python) python-telegram-bot;
-      nodejs = {path = ./nodejs;};
+      # JavaScript / Node.js
+      inherit (nodejs) nodejs browser-ext;
 
       postgres = {path = ./postgres;};
       tectonic = {path = ./tectonic;};

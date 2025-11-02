@@ -1,3 +1,6 @@
+# Flakes
+.direnv/
+
 # Artifacts
 result
 *.qcow2
