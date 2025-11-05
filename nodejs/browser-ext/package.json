@@ -8,11 +8,11 @@
     "build:wasm": "cp node_modules/web-tree-sitter/tree-sitter.wasm node_modules/tree-sitter-go/tree-sitter-go.wasm dist/",
     "build:esbuild": "node scripts/esbuild.js",
     "build:manifest": "cp manifest.json dist/manifest.json",
-    "prebuild": "cp -r src/ dist/",
+    "prebuild": "cp -r src/* icons/ dist/",
     "build": "node scripts/esbuild.js && npm run build:manifest && npm run build:wasm",
     "watch": "node scripts/esbuild.js --watch",
     "run:firefox": "cd dist && web-ext run --firefox firefox-devedition",
-    "run:chrome": "web-ext run --target chromium",
+    "run:chrome": "cd dist && web-ext run --target chromium",
     "dev:firefox": "npm-run-all --parallel watch run:firefox",
     "dev:chrome": "npm-run-all --parallel watch run:chrome",
     "package": "npm run build && web-ext build --overwrite-dest --artifacts-dir=package"
