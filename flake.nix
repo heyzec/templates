@@ -12,7 +12,7 @@
       inherit (python) python python-poetry python-poetry2nix;
       inherit (python) python-telegram-bot;
       # JavaScript / Node.js
-      inherit (nodejs) nodejs browser-ext;
+      inherit (nodejs) nodejs browser-ext vscode-ext;
 
       postgres = {path = ./postgres;};
       tectonic = {path = ./tectonic;};

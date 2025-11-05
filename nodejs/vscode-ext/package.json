@@ -1,0 +1,51 @@
+{
+  "name": "vscode-ext",
+  "displayName": "Sample Extension",
+  "version": "0.0.1",
+  "publisher": "templates",
+  "icon": "assets/icon.png",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "main": "./dist/wrapper.js",
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-ext.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts-info": {
+    "compile:wrapper": "Builds entrypoint to extension",
+    "compile:extension": "Bundles main source for the extension",
+    "build": "Creates all files required for the extension",
+    "format": "Format source code",
+    "watch": "Rebuild source code in this repo on change",
+    "vscode:prepublish": "Step called by vsce before packaging/publishing (convention by VS Code)",
+    "package": "Package the extension into .vsix format"
+  },
+  "scripts": {
+    "compile:wrapper": "tsc src/wrapper.ts --outDir dist --module commonjs --target ES2020",
+    "compile:extension": "webpack --mode production --devtool hidden-source-map",
+    "build": "npm run compile:wrapper && npm run compile:extension",
+    "format": "prettier . --write",
+    "watch": "webpack --watch",
+    "vscode:prepublish": "npm run build",
+    "package": "vsce package --no-dependencies --allow-missing-repository --allow-star-activation"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.7.0",
+    "prettier": "^3.6.2",
+    "source-map-support": "^0.5.21",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.6.2",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
