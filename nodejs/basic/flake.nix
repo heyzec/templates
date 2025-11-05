@@ -5,22 +5,23 @@
     nixpkgs.url = "github:NixOS/nixpkgs/25.05";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-  }: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+  outputs = {nixpkgs, ...}: let
+    systems = ["x86_64-linux" "aarch64-darwin"];
   in {
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = with pkgs; [
-        nodejs
-        yarn
-        # If nodejs is hard-coded to a specific version, node version in yarn also needs to be overridden
-        # Otherwise, `node --version` will not align with `yarn node --version`
-        # (yarn.override { nodejs = nodejs; })
-        typescript-language-server
-      ];
-    };
+    devShells = nixpkgs.lib.genAttrs systems (system: {
+      default = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nodejs
+            yarn
+            # If nodejs is hard-coded to a specific version, node version in yarn also needs to be overridden
+            # Otherwise, `node --version` will not align with `yarn node --version`
+            # (yarn.override { nodejs = nodejs; })
+            typescript-language-server
+          ];
+        };
+    });
   };
 }

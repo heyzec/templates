@@ -15,14 +15,14 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
-    nixosConfigurations= {
+    nixosConfigurations = {
       "vm" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
         };
         modules = [
           {
-            nixpkgs.hostPlatform = "x86_64-linux";  # needed for flakes
+            nixpkgs.hostPlatform = "x86_64-linux"; # needed for flakes
             users.users = {
               "user" = {
                 initialPassword = "password";
