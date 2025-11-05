@@ -1,0 +1,9 @@
+# Flakes
+.direnv/
+
+# Cache
+node_modules/
+
+# Artifacts
+out/
+*.vsix

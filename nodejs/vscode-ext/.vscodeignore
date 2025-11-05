@@ -1,0 +1,9 @@
+# It is better to use a whitelist than a blacklist
+
+# Ignore everything
+*
+*/**
+
+# Whitelist what you need
+!.vscodeignore
+!out/*

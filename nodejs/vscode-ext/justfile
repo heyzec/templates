@@ -1,0 +1,3 @@
+install:
+    npm run package
+    code --install-extension "$(ls -v *.vsix | tail -n1)" --force
