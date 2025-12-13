@@ -21,7 +21,7 @@
     in
       (pkgs.nixos config).digitalOceanImage;
 
-    devShells.${system}.default = pkgs.mkShell {
+    devShells.${system}.default = pkgs.mkShellNoCC {
       buildInputs = with pkgs; [
         terraform
         doctl

@@ -12,7 +12,7 @@
       default = let
         pkgs = nixpkgs.legacyPackages.${system};
       in
-        pkgs.mkShell {
+        pkgs.mkShellNoCC {
           buildInputs = with pkgs; [
             tectonic
           ];

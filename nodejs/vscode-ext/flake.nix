@@ -12,7 +12,7 @@
       default = let
         pkgs = nixpkgs.legacyPackages.${system};
       in
-        pkgs.mkShell {
+        pkgs.mkShellNoCC {
           packages = with pkgs; [
             nodejs
             typescript-language-server

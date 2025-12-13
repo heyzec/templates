@@ -6,15 +6,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/23.05";
   };
 
-  outputs = { self, nixpkgs }:
-  let
+  outputs = {nixpkgs, ...}: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     # https://github.com/direnv/direnv/issues/73#issuecomment-2478178424
     # Function to create script
     mkScript = name: text: let
       script = pkgs.writeShellScriptBin name text;
-    in script;
+    in
+      script;
 
     # Define your scripts/aliases
     scripts = [
@@ -22,13 +22,14 @@
       (mkScript "pg" ''psql -p 5432 -U postgres'')
       (mkScript "stop" ''pg_ctl stop'')
     ];
-  in
-  {
-    devShells.${system}.default = pkgs.mkShell {
-      buildInputs = with pkgs; [
-        go
-        postgresql_15
-      ] ++ scripts;
+  in {
+    devShells.${system}.default = pkgs.mkShellNoCC {
+      buildInputs = with pkgs;
+        [
+          go
+          postgresql_15
+        ]
+        ++ scripts;
 
       postgresConf = pkgs.writeText "postgresql.conf" ''
         # Add Custom Settings
@@ -46,7 +47,6 @@
         logging_collector = on
         log_min_error_statement = error
       '';
-
 
       # ENV Variables
       LD_LIBRARY_PATH = "${pkgs.geos}/lib:${pkgs.gdal}/lib";
@@ -73,4 +73,3 @@
     };
   };
 }
-

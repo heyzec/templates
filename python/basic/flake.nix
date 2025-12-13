@@ -32,7 +32,7 @@
               })
           ];
       in
-        pkgs.mkShell {
+        pkgs.mkShellNoCC {
           buildInputs = [
             (python-interpreter.withPackages python-packages)
           ];

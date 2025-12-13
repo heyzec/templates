@@ -5,18 +5,19 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }: let
+  outputs = {nixpkgs, ...}: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
 
     # Define Python version here
     python-interpreter = pkgs.python311;
-    python-packages = ps: with ps; [
-      python-dotenv
-      python-telegram-bot
-    ];
+    python-packages = ps:
+      with ps; [
+        python-dotenv
+        python-telegram-bot
+      ];
   in {
-    devShells.${system}.default = pkgs.mkShell {
+    devShells.${system}.default = pkgs.mkShellNoCC {
       buildInputs = [
         (python-interpreter.withPackages python-packages)
       ];
