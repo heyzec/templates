@@ -55,6 +55,13 @@ func main() {
 	version = appCfg.GetVersion()
 	fmt.Printf("Version is <%v>\n", version)
 
+	// Example 1:
+	var p *Config
+	if 1 == 1 {
+		p = &Config{}
+	}
+	print(p.asia) // nilness reports NO error here, but NilAway does.
+
 	// Unexpected case
 	//lint:ignore (this directive will not work, see https://github.com/golang/go/issues/74273)
 	cfg = &Config{asia: &RegionalConfig{}}
