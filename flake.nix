@@ -13,6 +13,8 @@
       inherit (python) python-telegram-bot;
       # JavaScript / Node.js
       inherit (nodejs) nodejs browser-ext vscode-ext;
+      # Go
+      go = {path = ./go;};
 
       postgres = {path = ./postgres;};
       tectonic = {path = ./tectonic;};
