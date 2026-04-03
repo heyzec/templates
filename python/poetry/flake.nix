@@ -31,9 +31,12 @@
           bash
           */
           ''
-            # == 1. Inject the libraries ==
-            export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/
-            export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath libs}:$LD_LIBRARY_PATH"
+            # == 1. Inject the libraries (uncomment only if necssary) ==
+            # This approach requires shell nixpkgs version to not differ too much from OS nixpkgs version, otherwise there will be errors like:
+            # /nix/store/.../lib/libstdc++.so.6: version CXXABI_1.3.15' not found (required by /nix/store/.../lib/libicui18n.so.76)
+            # Such errors will occur when running certain commands, and is difficult to realise rthe reason, e.g. running node within neovim, causing Copilot LSP to fail
+            # export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib/
+            # export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath libs}:$LD_LIBRARY_PATH"
 
             # == 2. Reinstall virtual environment if necessary ==
             POETRY_LOCK="poetry.lock"
