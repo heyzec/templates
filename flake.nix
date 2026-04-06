@@ -9,7 +9,7 @@
       basic = {path = ./basic;};
 
       # Python
-      inherit (python) python python-poetry python-poetry2nix;
+      inherit (python) python python-poetry python-poetry2nix python-uv2nix;
       inherit (python) python-telegram-bot;
       # JavaScript / Node.js
       inherit (nodejs) nodejs browser-ext vscode-ext;

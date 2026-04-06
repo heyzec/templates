@@ -8,6 +8,9 @@
   python-poetry2nix = {
     path = ./poetry2nix;
   };
+  python-uv2nix = {
+    path = ./uv2nix;
+  };
 
   python-telegram-bot = {
     path = ./examples/python-telegram-bot;
