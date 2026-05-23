@@ -1,0 +1,10 @@
+# Flakes
+.direnv/
+/result
+
+# Dependencies
+/node_modules/
+
+# Next.js
+/.next/
+next-env.d.ts

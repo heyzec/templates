@@ -8,4 +8,7 @@
   vscode-ext = {
     path = ./vscode-ext;
   };
+  bun2nix = {
+    path = ./bun2nix;
+  };
 }
