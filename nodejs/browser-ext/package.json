@@ -5,11 +5,10 @@
     "package": "Package the extension into a zip file"
   },
   "scripts": {
-    "build:wasm": "cp node_modules/web-tree-sitter/tree-sitter.wasm node_modules/tree-sitter-go/tree-sitter-go.wasm dist/",
     "build:esbuild": "node scripts/esbuild.js",
     "build:manifest": "cp manifest.json dist/manifest.json",
-    "prebuild": "cp -r src/* icons/ dist/",
-    "build": "node scripts/esbuild.js && npm run build:manifest && npm run build:wasm",
+    "prebuild": "mkdir -p dist && cp -r src/* icons/ dist/",
+    "build": "node scripts/esbuild.js && npm run build:manifest",
     "watch": "node scripts/esbuild.js --watch",
     "run:firefox": "cd dist && web-ext run --firefox firefox-devedition",
     "run:chrome": "cd dist && web-ext run --target chromium",
@@ -24,6 +23,6 @@
     "web-ext": "^9.1.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "is-even": "^1.0.0"
   }
 }

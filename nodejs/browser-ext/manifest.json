@@ -7,24 +7,14 @@
     "48": "icons/beasts-48.png"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "action": {
     "default_icon": "icons/beasts-48.png",
     "default_title": "Beastify",
     "default_popup": "popup/choose_beast.html"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "tree-sitter.wasm",
-        "tree-sitter-*.wasm"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
-  ],
   "content_scripts": [
     {
       "matches": [

@@ -21,7 +21,19 @@ function listenForClicks() {
  * and add a click handler.
  * If we couldn't inject the script, handle the error.
  */
-browser.tabs
-  .executeScript({ file: "/content_scripts/beastify.js" })
-  .then(listenForClicks)
-  .catch(reportExecuteScriptError);
+(async function runOnPopupOpened() {
+  try {
+    const [tab] = await browser.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+
+    // await browser.scripting.executeScript({
+    //   target: { tabId: tab.id },
+    //   files: ["/content_scripts/beastify.js"],
+    // });
+    listenForClicks();
+  } catch (e) {
+    reportExecuteScriptError(e);
+  }
+})();

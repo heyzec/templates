@@ -1,8 +1,4 @@
-import _ from "lodash";
+import isEven from "is-even";
 
-(async () => {
-  // Showcase that dependencies can be bundled
-  const arr = [1, 2, 3, 4, 5];
-  const chunks = _.chunk(arr, 2);
-  console.log(chunks); // [[1,2],[3,4],[5]]
-})();
+console.log(isEven(4)); // true
+console.log(isEven(5)); // false
