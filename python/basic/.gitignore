@@ -2,4 +2,4 @@
 .direnv/
 
 # Python
-.__pycache__/
+__pycache__/
