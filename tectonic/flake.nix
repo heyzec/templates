@@ -1,5 +1,5 @@
 {
-  description = "Template for a direnv shell";
+  description = "Template for LaTeX with Tectonic";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -15,6 +15,7 @@
         pkgs.mkShellNoCC {
           buildInputs = with pkgs; [
             tectonic
+            just
           ];
         };
     });
