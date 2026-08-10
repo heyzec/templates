@@ -15,6 +15,8 @@
       inherit (nodejs) nodejs browser-ext vscode-ext bun2nix;
       # Go
       go = {path = ./go;};
+      # Rust
+      rust = {path = ./rust;};
 
       postgres = {path = ./postgres;};
       tectonic = {path = ./tectonic;};
